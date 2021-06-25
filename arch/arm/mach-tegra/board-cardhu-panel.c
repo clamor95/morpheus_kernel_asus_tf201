@@ -124,8 +124,6 @@ static int cardhu_backlight_init(struct device *dev)
 
 static void cardhu_backlight_exit(struct device *dev)
 {
-	/* int ret; */
-	/*ret = gpio_request(cardhu_bl_enb, "backlight_enb");*/
 	gpio_set_value(cardhu_bl_enb, 0);
 	gpio_free(cardhu_bl_enb);
 }

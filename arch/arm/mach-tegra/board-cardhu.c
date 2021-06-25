@@ -158,15 +158,6 @@ static struct tegra_i2c_platform_data cardhu_i2c5_platform_data = {
 	.arb_recovery = arb_lost_recovery,
 };
 
-static struct i2c_board_info __initdata cardhu_i2c_asuspec_info[] = {
-	{
-		I2C_BOARD_INFO("asuspec", 0x15),
-	},
-	{
-		I2C_BOARD_INFO("asusdec", 0x19),
-	},
-};
-
 static void cardhu_i2c_init(void)
 {
 	u32 project_info = tegra3_get_project_id();
@@ -189,8 +180,6 @@ static void cardhu_i2c_init(void)
 	platform_device_register(&tegra_i2c_device3);
 	platform_device_register(&tegra_i2c_device2);
 	platform_device_register(&tegra_i2c_device1);
-
-	i2c_register_board_info(1, cardhu_i2c_asuspec_info, ARRAY_SIZE(cardhu_i2c_asuspec_info));
 }
 
 static struct platform_device *cardhu_uart_devices[] __initdata = {
@@ -392,13 +381,6 @@ static struct platform_device *cardhu_devices[] __initdata = {
 	&tegra_dam_device0,
 	&tegra_dam_device1,
 	&tegra_dam_device2,
-	&tegra_i2s_device0,
-	&tegra_i2s_device1,
-	&tegra_i2s_device3,
-	&tegra_spdif_device,
-	&spdif_dit_device,
-	&bluetooth_dit_device,
-	&baseband_dit_device,
 	&tegra_pcm_device,
 	&tegra_hda_device,
 	&tegra_cec_device,
@@ -409,11 +391,8 @@ static struct platform_device *cardhu_devices[] __initdata = {
 
 #if defined(CONFIG_USB_SUPPORT)
 static void cardu_usb_hsic_postsupend(void) { }
-
 static void cardu_usb_hsic_preresume(void) { }
-
 static void cardu_usb_hsic_phy_ready(void) { }
-
 static void cardu_usb_hsic_phy_off(void) { }
 
 static struct tegra_usb_phy_platform_ops hsic_xmm_plat_ops = {

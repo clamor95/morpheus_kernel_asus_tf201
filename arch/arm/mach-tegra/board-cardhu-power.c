@@ -596,12 +596,6 @@ int __init cardhu_suspend_init(void)
 	tegra_get_board_info(&board_info);
 	tegra_get_pmu_board_info(&pmu_board_info);
 
-	/* For PMU Fab A03, A04 and A05 make core_pwr_req to high */
-	if ((pmu_board_info.fab == BOARD_FAB_A03) ||
-		(pmu_board_info.fab == BOARD_FAB_A04) ||
-		 (pmu_board_info.fab == BOARD_FAB_A05))
-		cardhu_suspend_data.corereq_high = true;
-
 	/* CORE_PWR_REQ to be high for all processor/pmu board whose sku bit 0
 	 * is set. This is require to enable the dc-dc converter tps62361x */
 	if ((board_info.sku & SKU_DCDC_TPS62361_SUPPORT) || (pmu_board_info.sku & SKU_DCDC_TPS62361_SUPPORT))

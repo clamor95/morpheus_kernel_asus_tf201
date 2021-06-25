@@ -295,12 +295,6 @@ static int cardhu_nct1008_init(void)
 	return ret;
 }
 
-static struct i2c_board_info cardhu_i2c4_pad_bat_board_info[] = {
-	{
-		I2C_BOARD_INFO("pad-battery", 0xb),
-	},
-};
-
 int __init cardhu_sensors_init(void)
 {
 	int err;
@@ -311,9 +305,6 @@ int __init cardhu_sensors_init(void)
 	else
 		i2c_register_board_info(4, cardhu_i2c4_nct1008_board_info,
 			ARRAY_SIZE(cardhu_i2c4_nct1008_board_info));
-
-	i2c_register_board_info(4, cardhu_i2c4_pad_bat_board_info,
-		ARRAY_SIZE(cardhu_i2c4_pad_bat_board_info));
 
 	return 0;
 }
